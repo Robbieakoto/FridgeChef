@@ -1,0 +1,5 @@
+{
+  "name": "FridgeChef",
+  "description": "An AI-powered chef that helps you cook delicious meals with ingredients you already have at home.",
+  "requestFramePermissions": []
+}

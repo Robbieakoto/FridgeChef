@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#F5F5F0] font-sans text-gray-800;
+  }
+}
+
+.markdown-body h3 {
+  @apply text-2xl font-bold text-[#5A5A40] mt-6 mb-2;
+}
+
+.markdown-body strong {
+  @apply text-[#5A5A40];
+}
+
+.markdown-body ol {
+  @apply list-decimal list-inside space-y-2;
+}
+
+.markdown-body ul {
+    @apply list-disc list-inside space-y-2;
+}
+
+.markdown-body p {
+    @apply mb-4;
+}
+
