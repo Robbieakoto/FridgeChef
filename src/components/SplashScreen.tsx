@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { ChefHat } from 'lucide-react';
 
 export default function SplashScreen() {
   return (
@@ -21,7 +20,7 @@ export default function SplashScreen() {
         className="flex flex-col items-center"
       >
         <div className="bg-white/10 p-6 rounded-full mb-6 backdrop-blur-sm">
-          <ChefHat size={80} className="text-white" />
+          <img src="/icon.svg" alt="FridgeChef" className="w-20 h-20" />
         </div>
         <h1 className="text-5xl font-serif font-bold tracking-tight">FridgeChef</h1>
         <p className="mt-4 text-white/70 font-medium tracking-[0.2em] uppercase text-xs">Your Personal Kitchen Assistant</p>
