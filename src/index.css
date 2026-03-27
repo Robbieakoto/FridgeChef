@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#F5F5F0] font-sans text-gray-800;
+    @apply bg-[#F5F5F0] font-sans text-[#1F2937]; /* Using hex for gray-800 */
   }
 }
 

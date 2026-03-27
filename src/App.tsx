@@ -72,12 +72,12 @@ export default function App() {
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
           placeholder="e.g., chicken breast, half a bag of spinach, can of tomatoes, onion..."
-          className="w-full p-4 border border-gray-200 rounded-2xl h-32 focus:ring-2 focus:ring-[#5A5A40] focus:outline-none transition-shadow duration-300"
+          className="w-full p-4 border border-[#E5E7EB] rounded-2xl h-32 focus:ring-2 focus:ring-[#5A5A40] focus:outline-none transition-shadow duration-300"
         />
         <button
           onClick={findRecipes}
           disabled={isLoading}
-          className="mt-4 w-full bg-[#5A5A40] text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-[#4A4A30] transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center"
+          className="mt-4 w-full bg-[#5A5A40] text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-[#4A4A30] transition-colors duration-300 disabled:bg-[#9CA3AF] disabled:cursor-not-allowed flex items-center justify-center"
         >
           {isLoading ? (
             <>
