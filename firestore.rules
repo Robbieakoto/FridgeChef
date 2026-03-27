@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: recipes
+    // Document ID: auto-generated
+    // Fields:
+    //   - userId: string (required, immutable) - The UID of the owner
+    //   - ingredients: string (required) - The input ingredients
+    //   - content: string (required) - The generated recipe text
+    //   - createdAt: timestamp (required, immutable) - Creation time
+    //
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidRecipe(data) {
+      return data.keys().hasAll(['userId', 'ingredients', 'content', 'createdAt']) &&
+             data.keys().hasOnly(['userId', 'ingredients', 'content', 'createdAt']) &&
+             data.userId is string && data.userId == request.auth.uid &&
+             data.ingredients is string && data.ingredients.size() < 5000 &&
+             data.content is string && data.content.size() < 50000 &&
+             data.createdAt is timestamp;
+    }
+
+    match /recipes/{recipeId} {
+      allow read: if isOwner(resource.data.userId);
+      allow create: if isAuthenticated() && isValidRecipe(request.resource.data);
+      allow update: if false; // Recipes are immutable for now
+      allow delete: if isOwner(resource.data.userId);
+    }
+
+    match /test/connection {
+      allow read: if true;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import { useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-import { FileText, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { FileText, Image as ImageIcon, Loader2, Bookmark, BookmarkCheck } from 'lucide-react';
 
 interface RecipeCardProps {
   recipe: string;
@@ -105,9 +105,11 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         <ReactMarkdown>{recipe}</ReactMarkdown>
       </div>
       
-      <div className="bg-[#F9FAFB] px-8 py-4 border-t border-[#F3F4F6] flex flex-wrap items-center justify-between gap-4">
-        <span className="text-xs font-bold uppercase tracking-wider text-[#9CA3AF]">Save Recipe</span>
-        <div className="flex gap-3">
+      <div className="bg-[#F9FAFB] px-4 md:px-8 py-4 border-t border-[#F3F4F6] flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#9CA3AF]">Actions</span>
+        </div>
+        <div className="flex gap-2 md:gap-3">
           <button
             onClick={downloadAsPDF}
             disabled={!!isDownloading}

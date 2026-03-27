@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "Recipe": {
+      "title": "Recipe",
+      "description": "A generated recipe saved by the user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "ingredients": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "ingredients", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/recipes/{recipeId}": {
+      "schema": "Recipe",
+      "description": "User's saved recipes."
+    }
+  }
+}
