@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GoogleGenAI } from '@google/genai';
+import { AnimatePresence } from 'motion/react';
 import Hero from './components/Hero';
 import RecipeCard from './components/RecipeCard';
 import InventoryCard from './components/InventoryCard';
+import SplashScreen from './components/SplashScreen';
 
 const getAI = () => {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -17,6 +19,14 @@ export default function App() {
   const [recipes, setRecipes] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const findRecipes = async () => {
     if (!ingredients.trim()) {
@@ -71,8 +81,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-4xl mx-auto p-4 md:p-8">
-      <Hero />
+    <>
+      <AnimatePresence>
+        {showSplash && <SplashScreen />}
+      </AnimatePresence>
+      
+      <div className="min-h-screen w-full max-w-4xl mx-auto p-4 md:p-8">
+        <Hero />
 
       <div className="bg-white/80 backdrop-blur-sm p-4 md:p-6 rounded-3xl shadow-lg">
         <textarea
@@ -110,5 +125,6 @@ export default function App() {
         </div>
       )}
     </div>
-  );
+  </>
+);
 }
